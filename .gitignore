@@ -1,0 +1,24 @@
+docs/claude
+CLAUDE.md
+
+# cpp
+
+build/
+out/
+vcpkg_installed/
+CMakeUserPresets.json
+compile_commands.json
+
+# Java
+
+target/
+
+# Environments
+.env*
+!.env.example
+
+# Editors
+
+.idea/
+.vscode/
+.DS_Store
