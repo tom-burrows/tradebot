@@ -21,7 +21,7 @@ jobs:
           - name: Run CMake and install vcpkg
             uses: lukka/run-cmake@v10
             with:
-                cmakeListsTxtPath: '${{github.workspace}}/engine'
+                cmakeListsTxtPath: '${{github.workspace}}/engine/CMakeLists.txt'
                 configurePreset: 'debug'
                 buildPreset: 'debug'
                 buildPresetAdditionalArgs: "['--config Debug']"
