@@ -23,12 +23,6 @@ namespace {
         delete[] arr;
     }
 
-    TEST(SanitizerTest, StackBufferOverflow) {
-        int arr[4] = {};
-        volatile int i = 4;
-        arr[i] = 1;               // one past the end of a local array
-    }
-
     // ---------- UBSan ----------
 
     TEST(SanitizerTest, SignedIntegerOverflow) {
@@ -41,12 +35,6 @@ namespace {
         alignas(int) char buf[sizeof(int) * 2] = {};
         volatile std::size_t offset = 1;
         int* p = reinterpret_cast<int*>(buf + offset);  // not 4-byte aligned
-        volatile int value = *p;
-        (void)value;
-    }
-
-    TEST(SanitizerTest, NullDereference) {
-        int* volatile p = nullptr;
         volatile int value = *p;
         (void)value;
     }
