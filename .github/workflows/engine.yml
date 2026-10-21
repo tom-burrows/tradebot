@@ -1,0 +1,30 @@
+name: trading-bot
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v7
+          - name: Install CMake
+            uses: lukka/get-cmake@v3.28
+          - name: Use vcpkg
+            uses: lukka/run-vcpkg@v11
+          - name: Run CMake and install vcpkg
+            uses: lukka/run-cmake@v10
+            with:
+                cmakeListsTxtPath: '${{github.workspace}}/engine'
+                configurePreset: 'debug'
+                buildPreset: 'debug'
+                buildPresetAdditionalArgs: "['--config Debug']"
+                testPreset: 'debug'
+                testPresetAdditionalArgs: "['--config Debug']"
+                
+        
+                    
