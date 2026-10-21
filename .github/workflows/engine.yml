@@ -9,6 +9,9 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                config: [debug, asan-absan]
         steps:
           - name: Checkout repository
             uses: actions/checkout@v7
@@ -22,11 +25,9 @@ jobs:
             uses: lukka/run-cmake@v10
             with:
                 cmakeListsTxtPath: '${{github.workspace}}/engine/CMakeLists.txt'
-                configurePreset: 'debug'
-                buildPreset: 'debug'
-                buildPresetAdditionalArgs: "['--config Debug']"
-                testPreset: 'debug'
-                testPresetAdditionalArgs: "['--config Debug']"
-                
-        
+                configurePreset: '${{matrix.config}}'
+                buildPreset: '${{matrix.config}}'
+                buildPresetAdditionalArgs: "['--config ${{matrix.config}}']"
+                testPreset: '${{matrix.config}}'
+                testPresetAdditionalArgs: "['--config ${{matrix.config}}']"
                     
