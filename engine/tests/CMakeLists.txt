@@ -16,8 +16,6 @@ target_link_libraries(
     GTest::gtest_main
 )
 
-## This is added to ensure that sanitizers catch something in builds/github actions
-## Only uncomment if you want the builds to fail
 target_link_libraries(
     sanitizer_test
     PRIVATE
@@ -26,4 +24,7 @@ target_link_libraries(
 
 include(GoogleTest)
 gtest_discover_tests(base_test)
-gtest_discover_tests(sanitizer_test)
+
+## This is added to ensure that sanitizers catch something in builds/github actions
+## Only uncomment if you want the builds to fail
+# gtest_discover_tests(sanitizer_test)
