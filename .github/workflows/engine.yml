@@ -11,7 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                config: [debug, asan-absan]
+                config: [debug, asan-ubsan]
         steps:
           - name: Checkout repository
             uses: actions/checkout@v7
@@ -27,7 +27,7 @@ jobs:
                 cmakeListsTxtPath: '${{github.workspace}}/engine/CMakeLists.txt'
                 configurePreset: '${{matrix.config}}'
                 buildPreset: '${{matrix.config}}'
-                buildPresetAdditionalArgs: "['--config ${{matrix.config}}']"
+                buildPresetAdditionalArgs: "['--preset ${{matrix.config}}']"
                 testPreset: '${{matrix.config}}'
-                testPresetAdditionalArgs: "['--config ${{matrix.config}}']"
+                testPresetAdditionalArgs: "['--preset ${{matrix.config}}']"
                     
