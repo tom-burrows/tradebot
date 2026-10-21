@@ -8,3 +8,9 @@ target_link_libraries(
   PRIVATE
   benchmark::benchmark_main
 )
+
+target_link_libraries(
+    base_bench
+    PRIVATE
+    engine_core
+)

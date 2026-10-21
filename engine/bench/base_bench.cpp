@@ -1,17 +1,16 @@
 #include <benchmark/benchmark.h>
-#include <vector>
-#include <algorithm>
+#include "core/version.hpp"
 
 
-static void BM_StdSort(benchmark::State& state) {
-	std::vector<int> data(state.range(0), 42);
+static void BM_Version(benchmark::State& state) {
+	Version v;
 	for (auto _ : state) {
-		std::vector<int> copy = data;
-		std::sort(copy.begin(), copy.end());
+		std::string version = v.getVersion();
+		benchmark::DoNotOptimize(version);
 	}
 }
 
 
-BENCHMARK(BM_StdSort) -> Range(8,8<<10);
+BENCHMARK(BM_Version);
 
 BENCHMARK_MAIN();
