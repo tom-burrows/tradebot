@@ -28,6 +28,7 @@
 		},
 		{
 			"name": "asan-ubsan",
+			"displayName": "Asan-Ubsan",
 			"inherits": "debug",
 			"cacheVariables": {
 				"CMAKE_CXX_FLAGS": "-fsanitize=address,undefined -fno-omit-frame-pointer",
