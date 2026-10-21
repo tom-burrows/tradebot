@@ -25,6 +25,14 @@
 			"cacheVariables": {
 				"CMAKE_BUILD_TYPE": "Release"
 			}
+		},
+		{
+			"name": "asan-ubsan",
+			"inherits": "debug",
+			"cacheVariables": {
+				"CMAKE_CXX_FLAGS": "-fsanitize=address,undefined -fno-omit-frame-pointer",
+				"CMAKE_EXE_LINKER_FLAGS": "-fsanitize=address,undefined"
+			}
 		}
 	],
 	"buildPresets": [
@@ -35,6 +43,10 @@
 		{
 			"name": "release",
 			"configurePreset": "release"
+		},
+		{
+			"name": "asan-ubsan",
+			"configurePreset": "asan-ubsan"
 		}
 	],
 	"testPresets": [
@@ -48,6 +60,13 @@
 		{
 			"name": "release",
 			"configurePreset": "release",
+			"output": {
+				"outputOnFailure": true
+			}
+		},
+		{
+			"name": "asan-ubsan",
+			"configurePreset": "asan-ubsan",
 			"output": {
 				"outputOnFailure": true
 			}
