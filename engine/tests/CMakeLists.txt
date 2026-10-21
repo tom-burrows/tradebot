@@ -7,6 +7,8 @@ target_link_libraries(
   PRIVATE
   GTest::gtest_main
 )
+
+## This is how you link in new modules/libraries etc for testing.
 target_link_libraries(
     base_test
     PRIVATE
