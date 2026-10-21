@@ -11,7 +11,7 @@ find_package(GTest CONFIG REQUIRED)
 find_package(benchmark CONFIG REQUIRED)
 
 add_library(engine_core STATIC src/core/version.cpp)
-target_compile_definitions(engine_core PRIVATE ENGINE_VERSION="${PROJECT_VERSION}")
+target_compile_definitions(engine_core PUBLIC ENGINE_VERSION="${PROJECT_VERSION}")
 
 
 target_include_directories(engine_core PUBLIC 
@@ -28,3 +28,6 @@ target_link_libraries(engine_core PRIVATE project_warnings)
 add_executable(engine src/main.cpp)
 
 target_link_libraries(engine PRIVATE engine_core)
+
+enable_testing()
+add_subdirectory(tests)
