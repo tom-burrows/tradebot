@@ -31,3 +31,4 @@ target_link_libraries(engine PRIVATE engine_core)
 
 enable_testing()
 add_subdirectory(tests)
+add_subdirectory(bench)
