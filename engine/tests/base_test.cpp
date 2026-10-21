@@ -11,8 +11,4 @@ namespace {
         Version v;
         EXPECT_EQ(ENGINE_VERSION, v.getVersion());
     }
-
-    TEST (BaseTest, IntentionalFailureForGithubActions) {
-        EXPECT_EQ(1, 2);
-    }
 }
