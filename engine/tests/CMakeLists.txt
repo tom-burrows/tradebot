@@ -8,6 +8,11 @@ add_executable(
     sanitizer_test.cpp
 )
 
+add_executable(
+    refresher_test
+    refresher_test.cpp
+)
+
 ## This is how you link in new modules/libraries etc for testing.
 target_link_libraries(
     base_test
@@ -22,8 +27,16 @@ target_link_libraries(
     GTest::gtest_main
 )
 
+target_link_libraries(
+    refresher_test
+    PRIVATE 
+    refresher
+    GTest::gtest_main
+)
+
 include(GoogleTest)
 gtest_discover_tests(base_test)
+gtest_discover_tests(refresher_test)
 
 ## This is added to ensure that sanitizers catch something in builds/github actions
 ## Only uncomment if you want the builds to fail

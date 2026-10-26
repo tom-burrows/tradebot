@@ -11,12 +11,16 @@ find_package(GTest CONFIG REQUIRED)
 find_package(benchmark CONFIG REQUIRED)
 
 add_library(engine_core STATIC src/core/version.cpp)
-target_compile_definitions(engine_core PUBLIC ENGINE_VERSION="${PROJECT_VERSION}")
+add_library(refresher STATIC src/refresher/ScopedFile.cpp)
 
+target_compile_definitions(engine_core PUBLIC ENGINE_VERSION="${PROJECT_VERSION}")
 
 target_include_directories(engine_core PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
+
+target_include_directories(refresher PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 ## Hiding warning flags that aren't relevant right here
 
