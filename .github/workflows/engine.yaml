@@ -15,6 +15,8 @@ jobs:
         strategy:
             matrix:
                 config: [debug, asan-ubsan]
+        env:
+            VCPKG_CACHE_DIR: ${{github.workspace}}/vcpkg_cache
         steps:
           - name: Checkout repository
             uses: actions/checkout@v7
@@ -22,10 +24,21 @@ jobs:
             uses: lukka/get-cmake@latest
             with:
                 cmakeVersion: "3.28"
+          - name: Restore vcpkg binary cache
+            uses: actions/cache@v6
+            with:
+                path: ${{env.VCPKG_CACHE_DIR}}
+                key: vcpkg-${{runner.os}}-${{hashFiles('engine/vcpkg.json')}}
+                restore-keys: vcpkg-${{runner.os}}-
+          - name: Create vcpkg binary cache dir
+            run: mkdir -p "$VCPKG_CACHE_DIR"
           - name: Use vcpkg
             uses: lukka/run-vcpkg@v11
           - name: Run CMake and install vcpkg
             uses: lukka/run-cmake@v10
+            env:
+                # Overrides run-vcpkg's x-gha default, which vcpkg has removed
+                VCPKG_BINARY_SOURCES: clear;files,${{env.VCPKG_CACHE_DIR}},readwrite
             with:
                 cmakeListsTxtPath: '${{github.workspace}}/engine/CMakeLists.txt'
                 configurePreset: '${{matrix.config}}'
