@@ -13,7 +13,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.release>21</maven.compiler.release>
+    <maven.compiler.release>25</maven.compiler.release>
     <grpc.version>1.85.1</grpc.version>
     <protobuf.version>4.36.2</protobuf.version>
   </properties>
