@@ -1,0 +1,26 @@
+name: control-plane
+on:
+    push:
+        branches:
+            - master
+        paths:
+            - "proto/**"
+    pull_request:
+        branches:
+            - master
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+            - uses: actions/setup-java@v4
+              with:
+                  java-version: "21"
+                  distribution: "openjdk"
+                  cache: maven
+            - run: mvn -B verify
+            - run: mkdir staging && cp target/*.jar staging
+            - uses: actions/upload-artifact@v4
+              with:
+                  name: Package
+                  path: staging
