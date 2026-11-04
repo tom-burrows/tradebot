@@ -8,6 +8,14 @@
       "version>=": "1.9.5"
     },
     {
+        "name": "protobuf",
+        "version>=": "6.33.4"
+    },
+    {
+        "name": "grpc",
+        "version>=": "1.81.1"
+    },
+    {
       "name": "gtest",
       "version>=": "1.18.0"
     }

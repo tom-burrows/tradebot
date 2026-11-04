@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package EXAMPLE;
+
+option java_package = "com.burrows.tradebot.controlplane.protobuf";
+option java_multiple_files = true;
+
+service PersonGreeter {
+    rpc PeronGreeter (PersonGreeting) returns (PersonReply) {}
+}
+
+service PersonAger {
+    rpc PersonAger (PersonAgeRequest) returns (PersonAgeResponse) {}
+}
+message Person {
+    string name = 1;
+    int32 age = 2;
+}
+message PersonGreeting {
+    Person person = 1;
+    string greeting = 2;
+}
+
+message PersonReply {
+    Person person = 1;
+    string response = 2;
+}
+
+message PersonAgeRequest {
+    Person person = 1;
+    int32 age_to_add = 2;
+
+
+}
+
+message PersonAgeResponse {
+    Person person = 1;
+    int32 age_added = 2;
+}
+
