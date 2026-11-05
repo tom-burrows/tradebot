@@ -12,9 +12,6 @@ import io.grpc.stub.StreamObserver;
 import com.burrows.tradebot.controlplane.protobuf.*;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-/**
- * Unit test for simple App.
- */
 public class ProtoTest {
     private static class PeopleGreeterImpl extends PersonAgerGrpc.PersonAgerImplBase {
         @Override

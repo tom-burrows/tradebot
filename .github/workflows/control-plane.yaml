@@ -19,7 +19,7 @@ jobs:
                   java-version: "25"
                   distribution: "oracle-openjdk"
                   cache: maven
-            - run: mvn -B verify
+            - run: mvn -f control-plan -B verify
             - run: mkdir staging && cp target/*.jar staging
             - uses: actions/upload-artifact@v4
               with:
