@@ -6,6 +6,7 @@ on:
         paths:
             - "control-plane/**"
             - "proto/**"
+            - ".github/workflows/control-plane.yaml"
     pull_request:
         branches:
             - master
@@ -20,8 +21,8 @@ jobs:
                   distribution: "oracle-openjdk"
                   cache: maven
             - run: mvn -f control-plane -B verify
-            - run: mkdir staging && cp target/*.jar staging
             - uses: actions/upload-artifact@v4
               with:
                   name: Package
-                  path: staging
+                  if-no-files-found: error
+                  path: control-plane/target/*.jar
